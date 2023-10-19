@@ -1060,22 +1060,47 @@ file in your `output` folder. Use the `here::here()` function.
 <!-------------------------- Start your work below ---------------------------->
 
 I created a summary table from Task 1, and wrote it into a file
-cancer_sample_Task4.csv in my output folder C:/Documents/Work/UBC/LSI.
-The csv file could be opened from that location without any problems.
+‘cancer_sample_herehere.csv’ in my output folder.
 
 ``` r
-# Loading the here package
+# Loading the necessary packages
+library(dplyr)
 library(here)
 ```
 
     ## here() starts at C:/Documents/Work/UBC/LSI/Hallam_Lab/GSAT/STAT_545/STAT545/mda-andrasszeitz
 
 ``` r
-# Specifying the file path using here::here()
-cancer_sample_file_path <- here("C:/Documents/Work/UBC/LSI", "cancer_sample_Task4.csv")
+library(readr)
 
-# Writing the data frame to a CSV file
-write.csv(cancer_sample, file = cancer_sample_file_path, row.names = FALSE)
+# Filtering the data and store it in gap_asia_2007
+cancer_sample_herehere <- cancer_sample
+
+
+# Displaying the first few rows
+head(cancer_sample_herehere)
+```
+
+    ## # A tibble: 6 × 32
+    ##         ID diagnosis radius_mean texture_mean perimeter_mean area_mean
+    ##      <dbl> <chr>           <dbl>        <dbl>          <dbl>     <dbl>
+    ## 1   842302 M                18.0         10.4          123.      1001 
+    ## 2   842517 M                20.6         17.8          133.      1326 
+    ## 3 84300903 M                19.7         21.2          130       1203 
+    ## 4 84348301 M                11.4         20.4           77.6      386.
+    ## 5 84358402 M                20.3         14.3          135.      1297 
+    ## 6   843786 M                12.4         15.7           82.6      477.
+    ## # ℹ 26 more variables: smoothness_mean <dbl>, compactness_mean <dbl>,
+    ## #   concavity_mean <dbl>, concave_points_mean <dbl>, symmetry_mean <dbl>,
+    ## #   fractal_dimension_mean <dbl>, radius_se <dbl>, texture_se <dbl>,
+    ## #   perimeter_se <dbl>, area_se <dbl>, smoothness_se <dbl>,
+    ## #   compactness_se <dbl>, concavity_se <dbl>, concave_points_se <dbl>,
+    ## #   symmetry_se <dbl>, fractal_dimension_se <dbl>, radius_worst <dbl>,
+    ## #   texture_worst <dbl>, perimeter_worst <dbl>, area_worst <dbl>, …
+
+``` r
+# Writing the filtered data to a CSV file using here::here()
+write_csv(cancer_sample_herehere, here::here("cancer_sample_herehere.csv"))
 ```
 
 **Robustness:**
@@ -1086,7 +1111,7 @@ Rmd file without any problems. The Rmd file is robust.
 
 **Reproducibility:**
 
-I deleted the cancer_sample_Task4.csv file, and could remake it by
+I deleted the ‘cancer_sample_herehere.csv’ file, and could remake it by
 knitting mini-project-2.Rmd file. The Rmd file is reproducible.
 
 <!----------------------------------------------------------------------------->

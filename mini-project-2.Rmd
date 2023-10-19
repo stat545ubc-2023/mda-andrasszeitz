@@ -737,18 +737,24 @@ Take a summary table that you made from Task 1, and write it as a csv file in yo
 
 <!-------------------------- Start your work below ---------------------------->
 
-I created a summary table from Task 1, and wrote it into a file cancer_sample_Task4.csv in my output folder C:/Documents/Work/UBC/LSI. The csv file could be opened from that location without any problems.
+I created a summary table from Task 1, and wrote it into a file 'cancer_sample_herehere.csv' in my output folder.
 
 ```{r}
 
-# Loading the here package
+# Loading the necessary packages
+library(dplyr)
 library(here)
+library(readr)
 
-# Specifying the file path using here::here()
-cancer_sample_file_path <- here("C:/Documents/Work/UBC/LSI", "cancer_sample_Task4.csv")
+# Filtering the data and store it in gap_asia_2007
+cancer_sample_herehere <- cancer_sample
 
-# Writing the data frame to a CSV file
-write.csv(cancer_sample, file = cancer_sample_file_path, row.names = FALSE)
+
+# Displaying the first few rows
+head(cancer_sample_herehere)
+
+# Writing the filtered data to a CSV file using here::here()
+write_csv(cancer_sample_herehere, here::here("cancer_sample_herehere.csv"))
 
 ```
 
@@ -758,7 +764,7 @@ I moved the mini-project-2.Rmd file to another location, i.e., C:/Documents/Work
 
 **Reproducibility:**
 
-I deleted the cancer_sample_Task4.csv file, and could remake it by knitting mini-project-2.Rmd file. The Rmd file is reproducible.
+I deleted the 'cancer_sample_herehere.csv' file, and could remake it by knitting mini-project-2.Rmd file. The Rmd file is reproducible.
 
 <!----------------------------------------------------------------------------->
 
