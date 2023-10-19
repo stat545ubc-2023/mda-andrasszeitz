@@ -23,18 +23,13 @@ library(tidyverse)
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.3     ✔ readr     2.1.4
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-    ## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+    ## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
     ## ✔ purrr     1.0.2     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-``` r
-library(dplyr)
-library(ggplot2)
-```
 
 3.  Make a repository in the <https://github.com/stat545ubc-2023>
     Organization. You can do this by following the steps found on canvas
@@ -168,10 +163,12 @@ cleanliness of your analysis. I added a single code chunk for you below,
 but do you want to use more than one? Would you like to write more
 comments outside of the code chunk?
 
+library(datateachr) library(tidyverse) library(datateachr)
+
 <!-------------------------- Start your work below ---------------------------->
 
-Reason for choice: **cancer samples**: I have chosen **cancer samples**
-as I have a B.Sc. degree in Pharmaceutical Sciences and experience as an
+Reason for choice: **cancer samples**: I have chosen *cancer samples* as
+I have a B.Sc. degree in Pharmaceutical Sciences and experience as an
 analytical chemist in the field of medical science. I have an interest
 in the diagnosis of cancer, particularly through the analysis of
 volatile organic compounds (VOCs) in the headspace of cancer culture
@@ -180,12 +177,8 @@ Given my expertise with GC/MS, this research area is well-suited for me
 to learn R data analysis using, for example, VOC analyses of cancer
 samples.
 
-However, in addition to dataset **cancer_sample**, I will explore
-*apt_buildings, parking_meters, vancouver_trees* using dplyr attributes,
-as follows.
-
 ``` r
-### On cancer_sample dataset using functions filter(), select(), arrange() ###
+### EXPLORE HERE ###
 filtered_cancer <- cancer_sample %>%
          filter(ID > 800000) %>%
   filter(ID < 80000000) %>%
@@ -209,7 +202,7 @@ print(filtered_cancer, n = 10)
     ## 10 9112594       13         520.         0.167
     ## # ℹ 437 more rows
 
-Reason for choice: *apt_buildings*: Living in Toronto is a privilege
+Reason for choice: **apt_buildings**: Living in Toronto is a privilege
 that comes with advantages, but it also has its drawbacks. The rental
 prices are high and availability is scarce, and also, landlord bylaws
 enforce rules and regulations on apartment living that covers, for
@@ -219,7 +212,7 @@ machine learning with R can directly benefit not only prospective
 tenants in Toronto, but also in other cities, such as Vancouver.
 
 ``` r
-### On apt_buildings dataset using functions select(), arrange() ###
+### EXPLORE HERE ###
  apt_buildings %>%
  select(id, balconies, bike_parking, fire_alarm) %>%
    arrange(desc(id)) %>% 
@@ -236,16 +229,16 @@ tenants in Toronto, but also in other cities, such as Vancouver.
     ## 5 13809 YES       Not Available YES       
     ## # ℹ 3,450 more rows
 
-Reason for choice: *parking meters*: Navigating Vancouver’s roadways has
-become increasingly problematic rather than enjoyable. The rising cost
-of gasoline, congested streets, ongoing construction, and the
+Reason for choice: **parking meters**: Navigating Vancouver’s roadways
+has become increasingly problematic rather than enjoyable. The rising
+cost of gasoline, congested streets, ongoing construction, and the
 introduction of new *parking meters* all contribute to the growing list
 of challenges that Vancouver motorists face on a daily basis. The City
 of Vancouver’s Open Data Portal offers a good resource for students to
 learn R programming with all its benefits and challenges.
 
 ``` r
-### On parking meters dataset using functions mutate(), select(), arrange() ###
+### EXPLORE HERE ###
    mutate_parking <- parking_meters %>%
           mutate(
             meter_id = as.numeric(ifelse(is.na(meter_id) | !grepl("^\\d+$", meter_id), "0", meter_id)),  # Convert "meter_id" to numeric (handling NAs and non-numeric values)
@@ -253,7 +246,7 @@ learn R programming with all its benefits and challenges.
           ) %>%
           select(pay_phone:latitude, time_in_effect, meter_id_less) %>%
           arrange(desc(pay_phone))  # Corrected the column name for sorting
-        print(head(mutate_parking, n = 10))
+        print(head(mutate_parking, n = 10)) 
 ```
 
     ## # A tibble: 10 × 5
@@ -270,17 +263,17 @@ learn R programming with all its benefits and challenges.
     ##  9 69991         -123.     49.3 METER IN EFFECT: 9:00 AM TO 10:00…          232.
     ## 10 69989a        -123.     49.3 METER IN EFFECT: 9:00 AM TO 10:00…          122.
 
-Reason for choice: *vancouver_trees*: In the spring, Vancouver city
+Reason for choice: **vancouver_trees**: In the spring, Vancouver city
 streets are vibrant with colors of blooming cherries; during summer,
-inviting shades of elm, maple, and linden offer pleasant walks; and in
-autumn, captivating hues of fallen leaves remind us of the annual cycle
-of nature. The City of Vancouver’s Open Data Portal is available to
+inviting shades of elm, maple, and linden trees offer pleasant walks;
+and in autumn, captivating hues of fallen leaves remind us of the annual
+cycle of nature. The City of Vancouver’s Open Data Portal is open to
 students looking for learning in R programming as it gathers a vast of
 information on the city’s trees, providing an excellent dataset for
 educational purposes.
 
 ``` r
-### On vancouver_trees dataset using functions group_by(), arrange(), mutate(), select() ###
+### EXPLORE HERE ###
 group_trees <-
   vancouver_trees %>%
   group_by(genus_name) %>%
@@ -316,21 +309,19 @@ to choose this one? Briefly explain your choice below.
 
 <!-------------------------- Start your work below ---------------------------->
 
-I have chosen **cancer_sample** for the following reasons. Bacterial
-cultures release VOCs, which present opportunities for rapid
-diagnostics. Analytical chemistry techniques that detect VOCs can be
-used as valuable tools for biomarker discovery for rapid diagnosis of
-diseases. VOCs have been measured in bacterial growth of cystic
-fibrosis-related pathogens (Metabolites 2021, 11, 773,
-<https://doi.org/10.3390/metabo11110773>) or in prostate cancer (Cancers
-2022, 14(16), 3982, <https://doi.org/10.3390/cancers14163982>), and used
-as signaling agents for diagnostic purposes. In addition to measuring
-VOCs from cancer tissue cultures, tumor diagnosis could be improved if
-we gained deeper insights into the disease and map cancer tissue
-characteristics, such as radius, area, smoothness, compactness, etc. The
+I have chosen **cancer_sample** for the following reasons. Bacteria
+release VOCs, which present opportunities for rapid diagnostics.
+Analytical chemistry techniques that detect VOCs can be used as valuable
+tools for biomarker discovery for rapid diagnosis of diseases. VOCs have
+been measured in bacterial cultures of cystic fibrosis-related pathogens
+(Metabolites 2021, 11, 773, <https://doi.org/10.3390/metabo11110773>) or
+in prostate cancer (Cancers 2022, 14(16), 3982,
+<https://doi.org/10.3390/cancers14163982>), and used as signaling agents
+for diagnostic purposes. To gain deeper insights into cancer and map its
+tissue characteristics, such as radius, texture, perimeters, etc., the
 development and customization of machine learning algorithms in R would
-be necessary to achieve this goal and enable efficient data management
-and processing in cancer research and diagnostics.
+be necessary to enable efficient data management and processing in
+cancer research and diagnostics.
 
 <!----------------------------------------------------------------------------->
 
@@ -344,21 +335,8 @@ dataset. Note it down below.
 <!-------------------------- Start your work below ---------------------------->
 
 I selected the **cancer_sample** dataset, because I want to investigate
-whether there is a relationship between cancer growth and its
-characteristic parameters, such as cancer radius, area, smoothness or
-compactness. Cancer can be diagnosed by analyzing VOCs with analytical
-techniques, such as GC/MS in tissue cultures, and after diagnosis,
-cancer growth could be monitored by measuring a representative cancer
-parameter that reliably characterizes tumor development and status.
-
-**Question:** Is there a cancer parameter, such as radius, area,
-smoothness or compactness that can be used to trace tumor advancement,
-quickly and accurately?
-
-To answer that question, I want to conduct statistical analyses in R to
-find that specific cancer parameter, and use algorithms and statistical
-analyses to characterize cancer state and severity in a quantitative
-manner.
+whether there is a relationship between any of the cancer parameters,
+such as radius, area, smoothness or compactness.
 
 <!----------------------------------------------------------------------------->
 
@@ -419,9 +397,16 @@ is dplyr and ggplot2.
 8.  Use a density plot to explore any of your variables (that are
     suitable for this type of plot).
 
+2.2 **(4 points)** For each of the 4 exercises that you complete,
+provide a *brief explanation* of why you chose that exercise in relation
+to your data (in other words, why does it make sense to do that?), and
+sufficient comments for a reader to understand your reasoning and code.
+
 <!-------------------------- Start your work below ---------------------------->
 
-1.  Plot the distribution of a numeric variable
+Exercise 2.1
+
+1.  Plot distribution of a numeric value
 
 ``` r
 library(dplyr)
@@ -437,38 +422,38 @@ library(gridExtra)
     ##     combine
 
 ``` r
-# Creating a distribution plot for 'radius_mean'
+# Create a distribution plot for 'radius_mean'
 radius_mean_plot <- ggplot(cancer_sample, aes(x = radius_mean)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   labs(x = "Radius Mean", y = "Frequency") +
   ggtitle("Distribution of Radius Mean")
 
-# Creating a distribution plot for 'area_mean'
+# Create a distribution plot for 'area_mean'
 area_mean_plot <- ggplot(cancer_sample, aes(x = area_mean)) +
   geom_histogram(binwidth = 50, fill = "green", color = "black") +
   labs(x = "Area Mean", y = "Frequency") +
   ggtitle("Distribution of Area Mean")
 
-# Creating a distribution plot for 'smoothness_mean'
+# Create a distribution plot for 'smoothness_mean'
 smoothness_mean_plot <- ggplot(cancer_sample, aes(x = smoothness_mean)) +
   geom_histogram(binwidth = 0.01, fill = "red", color = "black") +
   labs(x = "Smoothness Mean", y = "Frequency") +
   ggtitle("Distribution of Smoothness Mean")
 
-# Creating a distribution plot for 'compactness_mean'
+# Create a distribution plot for 'compactness_mean'
 compactness_mean_plot <- ggplot(cancer_sample, aes(x = compactness_mean)) +
   geom_histogram(binwidth = 0.01, fill = "purple", color = "black") +
   labs(x = "Compactness Mean", y = "Frequency") +
   ggtitle("Distribution of Compactness Mean")
 
-# Arranging and displaying the plots in a grid
+# Arrange and display the plots in a grid
 grid_plot <- grid.arrange(radius_mean_plot, area_mean_plot, smoothness_mean_plot, compactness_mean_plot, ncol = 2)
 ```
 
 ![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
-# Printing the grid of plots
+# Print the grid of plots
 print(grid_plot)
 ```
 
@@ -536,14 +521,14 @@ scatterplot4 <- ggplot(cancer_sample, aes(x = area_mean, y = smoothness_mean)) +
   labs(x = "Area Mean", y = "Smoothness Mean") +
   ggtitle("Scatterplot: Area Mean vs. Smoothness Mean")
 
-# Arranging and displaying the scatterplots in a grid
+# Arrange and display the scatterplots in a grid
 scatterplot_grid <- grid.arrange(scatterplot1, scatterplot2, scatterplot3, scatterplot4, ncol = 2)
 ```
 
 ![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
-# Printing the grid of scatterplots
+# Print the grid of scatterplots
 print(scatterplot_grid)
 ```
 
@@ -586,6 +571,9 @@ print(scatterplot_grid)
     ## # ℹ 199 more rows
 
 ``` r
+library(ggplot2)
+library(gridExtra)
+
   # Creating a scatterplot for 'perimeter_vs_texture' and 'symmetry_vs_concavity' by 'diagnosis'. Applying log10 scale for Y axis.
   
   cancer_scatter <- ggplot(cancer_explore, aes(x = perimeter_vs_texture, y = symmetry_vs_concavity, color = diagnosis)) +
@@ -597,7 +585,7 @@ print(scatterplot_grid)
   print(cancer_scatter)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 6.  Use a boxplot to look at the frequency of different observations
     within a single variable. You can do this for more than one variable
@@ -618,7 +606,7 @@ radius_mean_boxplot <- ggplot(cancer_sample, aes(x = diagnosis, y = radius_mean)
 print(radius_mean_boxplot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 # Loading the required library
@@ -635,12 +623,9 @@ area_mean_boxplot <- ggplot(cancer_sample, aes(x = diagnosis, y = area_mean)) +
 print(area_mean_boxplot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-10-2.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 ``` r
-# Loading the required library
-library(ggplot2)
-
 # Data frame is in 'cancer_sample'
 # Creating a box plot for 'smoothness_mean'
 smoothness_mean_boxplot <- ggplot(cancer_sample, aes(x = diagnosis, y = smoothness_mean)) +
@@ -652,12 +637,9 @@ smoothness_mean_boxplot <- ggplot(cancer_sample, aes(x = diagnosis, y = smoothne
 print(smoothness_mean_boxplot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-10-3.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-3.png)<!-- -->
 
 ``` r
-# Loading the required library
-library(ggplot2)
-
 # Data frame is in 'cancer_sample'
 # Creating a box plot for 'compactness_mean'
 compactness_mean_boxplot <- ggplot(cancer_sample, aes(x = diagnosis, y = compactness_mean)) +
@@ -669,7 +651,7 @@ compactness_mean_boxplot <- ggplot(cancer_sample, aes(x = diagnosis, y = compact
 print(compactness_mean_boxplot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-10-4.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-4.png)<!-- -->
 
 8.Use a density plot to explore any of your variables
 
@@ -687,12 +669,9 @@ radius_mean_density_plot <- ggplot(cancer_sample, aes(x = radius_mean, fill = di
 print(radius_mean_density_plot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ``` r
-# Loading the library
-library(ggplot2)
-
 # Creating a density plot for 'area_mean' by Diagnosis
 area_mean_density_plot <- ggplot(cancer_sample, aes(x = area_mean, fill = diagnosis)) +
   geom_density(alpha = 0.5) +  # Use alpha for transparency
@@ -703,12 +682,9 @@ area_mean_density_plot <- ggplot(cancer_sample, aes(x = area_mean, fill = diagno
 print(area_mean_density_plot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
 
 ``` r
-# Loading the library
-library(ggplot2)
-
 # Creating a density plot for 'smoothness_mean' by Diagnosis
 smoothness_mean_density_plot <- ggplot(cancer_sample, aes(x = smoothness_mean, fill = diagnosis)) +
   geom_density(alpha = 0.5) +  # Use alpha for transparency
@@ -719,12 +695,9 @@ smoothness_mean_density_plot <- ggplot(cancer_sample, aes(x = smoothness_mean, f
 print(smoothness_mean_density_plot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-3.png)<!-- -->
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-12-3.png)<!-- -->
 
 ``` r
-# Loading the library
-library(ggplot2)
-
 # Creating a density plot for 'compactness_mean' by Diagnosis
 compactness_mean_density_plot <- ggplot(cancer_sample, aes(x = compactness_mean, fill = diagnosis)) +
   geom_density(alpha = 0.5) +  # Use alpha for transparency
@@ -735,9 +708,7 @@ compactness_mean_density_plot <- ggplot(cancer_sample, aes(x = compactness_mean,
 print(compactness_mean_density_plot)
 ```
 
-![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-11-4.png)<!-- -->
-<!----------------------------------------------------------------------------->
-
+![](mda-andrasszeitz_files/figure-gfm/unnamed-chunk-12-4.png)<!-- -->
 2.2 **(4 points)** For each of the 4 exercises that you complete,
 provide a *brief explanation* of why you chose that exercise in relation
 to your data (in other words, why does it make sense to do that?), and
@@ -820,6 +791,7 @@ rest of the plots, in this plot, the distributions of groups B and M are
 the most separated and tumor radius have a region (approx. radius mean
 20) where the signal is specific to group M tumors and not contaminated
 with signals from group B.
+
 <!----------------------------------------------------------------------------->
 
 # Task 3: Choose research questions
