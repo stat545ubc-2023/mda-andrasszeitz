@@ -4,41 +4,28 @@ Created October 5, 2023
 Last updated October 19, 2023
 
 This is the repository of Andras Szeitz, Ph.D. student in the GSAT program.
-
 This repository contains the following folders and files.
 
 . . .stat545ubc-2023/mda-andrasszeitz
 
 Folders:
-
 mda-andrasszeitz_files
-
 mini-project-2_files
 
 Files:
-
 README.md
-
 mda-andrasszeitz.Rmd
-
 mda-andrasszeitz.md
-
 mini-project-2.Rmd
-
 mini-project-2. Md
 
 
 File ‘mda-andrasszeitz.Rmd’ contains the Mini Data-Analysis Deliverable 1 before knitting to a md file.
-
 File ‘mda-andrasszeitz.md’ contains the tag release version of Mini Data-Analysis Deliverable 1 document.
-
-
 File ‘mini-project-2.Rmd’ contains the Mini Data-Analysis Deliverable 2 before knitting to a md file.
-
 File ‘mini-project-2.md’ contains the tag release version of Mini Data-Analysis Deliverable 2 document.
 
 Cloning this repository:
-
 •	Using HTTPS: https://github.com/stat545ubc-2023/mda-andrasszeitz.git
 •	Using SSH: git@github.com:stat545ubc-2023/mda-andrasszeitz.git 
 •	Using GitHub CLI: gh repo clone stat545ubc-2023/mda-andrasszeitz 
