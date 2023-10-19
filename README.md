@@ -9,11 +9,13 @@ This repository contains the following folders and files.
 
 . . .stat545ubc-2023/mda-andrasszeitz
 
+
 Folders:
 
 mda-andrasszeitz_files
 
 mini-project-2_files
+
 
 Files:
 
@@ -34,6 +36,7 @@ File ‘mda-andrasszeitz.md’ contains the tag release version of Mini Data-Ana
 File ‘mini-project-2.Rmd’ contains the Mini Data-Analysis Deliverable 2 before knitting to a md file.
 
 File ‘mini-project-2.md’ contains the tag release version of Mini Data-Analysis Deliverable 2 document.
+
 
 Cloning this repository:
 
